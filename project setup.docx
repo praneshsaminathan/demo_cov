@@ -1,0 +1,34 @@
+Prerequisites
+
+List the tools, libraries, and environment necessary to run the project:
+
+	•	Python: Version 3.11
+	•	Django: Version 5.0
+	•	Database: PostgreSQL, MySQL, SQLite (specify versions and configurations)
+	•	Other Dependencies: List other required libraries or tools like Redis, Celery, etc.
+
+Environment Setup
+
+Guide through setting up the development environment:
+
+	1.	Python Installation:
+	•	Windows: Provide link to Python downloads or Chocolatey commands.
+	•	macOS/Linux: Provide commands using Homebrew or apt-get.
+	2.	Virtual Environment:
+	•	How to install virtual environment using pip install virtualenv.
+	•	Creating and activating a virtual environment:
+            virtualenv venv
+            source venv/bin/activate  # On Unix or macOS
+            venv\Scripts\activate  # On Windows
+    3.	Dependency Installation:
+	•	Direct them to install dependencies via pip:
+            pip install -r requirements.txt
+
+Project Configuration
+    1. Database Setup:
+	•	Instructions on setting up the database:
+            python manage.py migrate
+    2. Running the Development Server:
+	•	How to run the Django development server:
+            python manage.py runserver
+    Hurrey! application will be up and running on http://localhost:8000

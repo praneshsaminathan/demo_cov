@@ -1,0 +1,59 @@
+<!-- upload.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Setting the viewport to make the site responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+    <!-- Bootstrap CSS for styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Page header -->
+        <h1>Upload CSV File</h1>
+        <!-- Link to the home page -->
+        <a href="{% url 'home-page' %}" class="btn btn-secondary mt-3 mb-3">Home</a>
+
+        <!-- Form to upload files -->
+        <form action="{% url 'upload-page' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-10 col-sm-12">
+                    <div class="mb-3">
+                        <!-- File input field -->
+                        <input type="file" class="form-control" id="file" name="file" required>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-12">
+                    <!-- Submit button for the form -->
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </div>
+            </div>
+        </form>
+        
+        <!-- Section to display uploaded files -->
+        <h2 class="mt-3">Uploaded Files</h2>
+        <ul class="list-group">
+            <!-- Loop through each file and display it -->
+            {% for file in files %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ file.title }}
+                <span>{{ file.status }}</span>
+                <!-- Form to trigger processing of an uploaded file -->
+                <form action="{% url 'process-file' file.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-secondary">Process</button>
+                </form>
+            </li>
+            {% empty %}
+            <!-- Message to display if no files have been uploaded -->
+            <li class="list-group-item">No files uploaded yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- Bootstrap JS for interactivity -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
